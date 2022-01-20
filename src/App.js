@@ -1,12 +1,16 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import ComponentContainer from './components/ComponentContainer';
+import NavBar from './components/NavBar/NavBar';
+import ItemListContainer from './components/ItemsListContainer/ItemListContainer';
+
+
 
 
 function App() {
   return (
     <div className="App">
-      <ComponentContainer />
+      <NavBar />
+      <ItemListContainer greetings="Bienvenidos a City Cell"/>
     </div>
   );
 }
