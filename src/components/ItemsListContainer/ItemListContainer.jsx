@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getFetch } from '../../helpers/mock';
 import ItemCount from '../ItemCount/ItemCount';
-import ItemList from './ItemList/ItemList';
+import ItemList from '../ItemList/ItemList';
 
 
 function onAdd (cant){
