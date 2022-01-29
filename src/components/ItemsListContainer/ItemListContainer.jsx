@@ -1,30 +1,43 @@
 import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { getFetch } from '../../helpers/mock';
 import ItemCount from '../ItemCount/ItemCount';
 import ItemList from '../ItemList/ItemList';
 
 
-function onAdd (cant){
-  console.log(cant)
-  
-}
+
 
 
 function ItemListContainer () {
   const [productos, setProductos] = useState([]);
   const [loading, setloading] = useState(true);
 
+  const{idCategoria}= useParams()
+
 
 useEffect(() => {
+  if (idCategoria) {
+    getFetch
+    .then(res=> setProductos(res.filter(prod => prod.categoria===idCategoria)))
+    //.then(respuesta => console.log(respuesta))
+    .catch(err => console.log(err))
+    .finally(()=> setloading(false))
+    
+  } else{
   getFetch
     .then(res=> setProductos(res))
     //.then(respuesta => console.log(respuesta))
     .catch(err => console.log(err))
     .finally(()=> setloading(false))
+  }
+},[idCategoria])
+
+function onAdd (cant){
+  console.log(cant)
   
-},[])
+}
 
-
+console.log(idCategoria)
   //console.log(productos)
 
   return (
