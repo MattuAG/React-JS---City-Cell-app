@@ -32,10 +32,6 @@ useEffect(() => {
   }
 },[idCategoria])
 
-function onAdd (cant){
-  console.log(cant)
-  
-}
 
 console.log(idCategoria)
   //console.log(productos)
@@ -50,7 +46,7 @@ console.log(idCategoria)
 
 
     <button /*onClick={()=> setBool (!bool)}*/>Click</button> <br />
-    <ItemCount initial={1} stock={15} onAdd={onAdd}/>
+    
   </div>
   )
 }

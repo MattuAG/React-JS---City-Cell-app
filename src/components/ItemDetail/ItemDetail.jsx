@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import ItemCount from '../ItemCount/ItemCount';
 
 const ItemDetail = ({product}) => {
 
-  function onAdd(cant) {
-      console.log(cant)
-  }
+    const [contador, setContador] = useState(0);
+
+    function onAdd (cant){
+        setContador(cant)
+        
+      }
 
 return <div>
       <div className="row">
@@ -16,7 +20,20 @@ return <div>
           </div>
       </div>
       <div className="col">
-          <ItemCount onAdd={onAdd} initial={1} stock={6} />
+          {
+              contador === 0 ?
+              <ItemCount initial={1} stock={15} onAdd={onAdd}/>
+              :
+              <>
+                <Link to='/cart'>
+                    <button>Terminar Compra</button>
+                </Link>
+                <Link to='/'>
+                    <button>Seguir Comprando</button>
+                </Link>
+              </>
+          }
+         
       </div>
       </div>
 
