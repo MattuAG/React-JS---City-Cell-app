@@ -1,21 +1,15 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useCartContext } from '../../context/CartContext';
 import ItemCount from '../ItemCount/ItemCount';
 
 const ItemDetail = ({product}) => {
 
-    const {cartList, agregarAlCarrito} = useCartContext()
-
-
     const [contador, setContador] = useState(0);
 
-    function onAdd(cant){
-        agregarAlCarrito( {...product, cantidad: cant} )
+    function onAdd (cant){
+        setContador(cant)
         
       }
-
-      console.log(cartList)
 
 return <div>
       <div className="row">
@@ -26,21 +20,19 @@ return <div>
           </div>
       </div>
       <div className="col">
-      
-      {
-          
-          contador === 0 ?
-           <ItemCount initial={1} stock={15} onAdd={onAdd}/>
-          :
-          <>
-            <Link to='/cart'>
-                <button>Terminar Compra</button>
-            </Link>
-             <Link to='/'>
-                 <button>Seguir Comprando</button>
-             </Link>
-          </>
-      } 
+          {
+              contador === 0 ?
+              <ItemCount initial={1} stock={15} onAdd={onAdd}/>
+              :
+              <>
+                <Link to='/cart'>
+                    <button>Terminar Compra</button>
+                </Link>
+                <Link to='/'>
+                    <button>Seguir Comprando</button>
+                </Link>
+              </>
+          }
          
       </div>
       </div>
