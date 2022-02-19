@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useCartContext } from '../../context/CartContext';
 import ItemCount from '../ItemCount/ItemCount';
 
 const ItemDetail = ({product}) => {
+
+    
+    const { cartList, agregarAlCarrito } = useCartContext()
 
     const [contador, setContador] = useState(0);
 
@@ -10,6 +14,8 @@ const ItemDetail = ({product}) => {
         setContador(cant)
         
       }
+
+      console.log(cartList)
 
 return <div>
       <div className="row">

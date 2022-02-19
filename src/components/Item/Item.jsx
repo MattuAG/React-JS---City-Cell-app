@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom"
+//import { useNameContext } from "../../context/CartContext"
 
 function Item({prod}) {
+    //const {agregar} = useNameContext
     return (
         
             <div 

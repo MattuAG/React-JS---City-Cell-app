@@ -13,7 +13,7 @@ const ItemDetailContainer = () => {
           .then(res => setProduct(res.find(prod => prod.id === idProducto)))
           .catch(err => console.log(err))
       
-  }, [])
+  }, [idProducto])
 
   console.log(product)
   
