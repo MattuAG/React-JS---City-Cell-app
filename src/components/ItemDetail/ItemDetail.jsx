@@ -12,6 +12,8 @@ const ItemDetail = ({product}) => {
 
     function onAdd (cant){
         setContador(cant)
+        const producto = {...product, cantidad: cant}
+        agregarAlCarrito(producto)
         
       }
 
