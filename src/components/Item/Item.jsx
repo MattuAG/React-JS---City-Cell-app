@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 //import { useNameContext } from "../../context/CartContext"
 
 function Item({prod}) {
-    //const {agregar} = useNameContext
+    console.log('item');
     return (
         
             <div 
@@ -14,7 +14,7 @@ function Item({prod}) {
                         {`${prod.name} - ${prod.categoria}`}
                     </div>
                     <div className="card-body">
-                        <img src={prod.foto} alt='' className='w-50' />
+                        <img src={prod.imagenUrl} alt='' className='w-50' />
                         {prod.price}                                                            
                     </div>
                     <div className="card-footer">

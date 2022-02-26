@@ -24,7 +24,7 @@ return <div>
       <div className="col">
           <div className="container">
               <h3>{product.name}</h3>
-              <img src={product.foto} alt='Foto'/>
+              <img src={product.imagenUrl} alt='Foto'/>
           </div>
       </div>
       <div className="col">

@@ -1,56 +1,45 @@
 import { useEffect, useState } from 'react';
+import { collection, doc, getDoc, getDocs, getFirestore, query, where } from 'firebase/firestore';
 import { useParams } from 'react-router-dom';
 import { getFetch } from '../../helpers/mock';
-import ItemCount from '../ItemCount/ItemCount';
 import ItemList from '../ItemList/ItemList';
 
 
 
+function ItemListContainer() { 
+  const [productos, setProductos] = useState ([])    
+  const [loading, setloading] = useState(true)
 
+  const { idCategoria } = useParams()    
+  
+  useEffect(() => {
+      const db = getFirestore()
+      const queryCollection = collection(db, 'items')
+      const queryF = !idCategoria ?
+        queryCollection
+        :
+        query(queryCollection,
+          where('categoria', '==', idCategoria)
+          )
 
-function ItemListContainer () {
-  const [productos, setProductos] = useState([]);
-  const [loading, setloading] = useState(true);
-
-  const{idCategoria}= useParams()
-
-
-useEffect(() => {
-  if (idCategoria) {
-    getFetch
-    .then(res=> setProductos(res.filter(prod => prod.categoria===idCategoria)))
-    //.then(respuesta => console.log(respuesta))
-    .catch(err => console.log(err))
-    .finally(()=> setloading(false))
-    
-  } else{
-  getFetch
-    .then(res=> setProductos(res))
-    //.then(respuesta => console.log(respuesta))
-    .catch(err => console.log(err))
-    .finally(()=> setloading(false))
-  }
-},[idCategoria])
-
-
-console.log(idCategoria)
-  //console.log(productos)
+    getDocs(queryF)
+    .then(resp => setProductos( resp.docs.map(prod => ( { id: prod.id, ...prod.data() } )  ) ))
+    .catch((err) => console.log(err))
+    .finally(() => setloading(false))
+  }, [idCategoria])
+ 
 
   return (
-    <div>
-            { loading ? 
-                    <h2> Cargando productos... </h2> 
-                : 
-                    <ItemList productos={productos} />
-            }  
-
-
-    <button /*onClick={()=> setBool (!bool)}*/>Click</button> <br />
-    
-  </div>
-  )
-}
+    <div>            
+        { loading ? 
+            <h2>Cargando ...</h2> 
+        : 
+            <ItemList
+                productos={productos} 
+            />
+        }                       
+    </div>
+)}
 
 
 export default ItemListContainer;
-
