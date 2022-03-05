@@ -1,12 +1,10 @@
-import { useCartContext } from '../../context/CartContext';
-import CartWidget from '../CartWidget/CartWidget';
 import React, { useContext} from "react";
 import { DataContext } from "context/DataProvider";
 import { Link } from "react-router-dom";
 import Logo from "../images/logo.png";
 
 
-export const NavBar = () => {
+export const Header = () => {
   const value = useContext(DataContext);
   const [carrito] = value.carrito;
   const [menu, setMenu] = value.menu;
@@ -42,5 +40,3 @@ export const NavBar = () => {
     </header>
   );
 };
-
-export default NavBar
