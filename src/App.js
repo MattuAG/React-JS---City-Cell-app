@@ -1,5 +1,4 @@
-import {BrowserRouter, Routes, Route} from 'react-router-dom'
-import './App.css';
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import NavBar from './components/NavBar/NavBar';
 import ItemListContainer from './components/ItemsListContainer/ItemListContainer';

@@ -1,40 +1,46 @@
-import React from 'react';
-import { NavLink } from 'react-bootstrap';
-import Container from 'react-bootstrap/Container';
-import Nav  from 'react-bootstrap/Nav';
-import Navbar  from 'react-bootstrap/Navbar';
-import { Link } from 'react-router-dom';
 import { useCartContext } from '../../context/CartContext';
 import CartWidget from '../CartWidget/CartWidget';
+import React, { useContext} from "react";
+import { DataContext } from "context/DataProvider";
+import { Link } from "react-router-dom";
+import Logo from "../images/logo.png";
 
-const NavBar = () => {
 
-    const {cantidad} = useCartContext()
+export const NavBar = () => {
+  const value = useContext(DataContext);
+  const [carrito] = value.carrito;
+  const [menu, setMenu] = value.menu;
 
 
-  return <div>
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-                <Container>
-                <Link to='/'>
-                     City Cell
-                </Link>   
-                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                <Navbar.Collapse id="responsive-navbar-nav">
-                    <Nav className="me-auto">
-                    <Link to='/categoria/celulares'>Celulares</Link>
-                    <Link to='/categoria/accesorios'>Accesorios</Link>
-                   
-                    </Nav>
-                    <Nav>
-                    <Link to='/cart'>
-                        {cantidad() != 0 && cantidad()}
-                        <CartWidget/>
-                    </Link>
-                    </Nav>
-                </Navbar.Collapse>
-                </Container>
-                </Navbar>
-  </div>;
+  const toogleMenu = () =>{
+    setMenu(!menu)
+  }
+ 
+
+  return (
+    <header>
+      <div className="menu">
+      <box-icon name="menu"></box-icon>
+      </div>
+      <Link to="/">
+      <div className="logo">
+        <img src={Logo} alt="Logo" width="150" />
+      </div>
+      </Link>
+      <ul>
+        <li>
+          <Link to="/">INICIO</Link>
+        </li>
+        <li>
+          <Link to="/productos">PRODUCTOS</Link>
+        </li>
+      </ul>
+      <div className="cart" onClick={toogleMenu}>
+        <box-icon name="cart"></box-icon>
+        <span className="item__total"> {carrito.length} </span>
+      </div>
+    </header>
+  );
 };
 
-export default NavBar;
+export default NavBar
